@@ -684,27 +684,29 @@ def main(args):
         print_debug("\nTesting stopped.\n")
         #raise
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='TeSpeed, CLI SpeedTest.net')
+# TODO: This should be offloaded to a man page
+def init():
+    if __name__ == '__main__':
+        parser = argparse.ArgumentParser(description='TeSpeed, CLI SpeedTest.net')
 
-    parser.add_argument('server', nargs='?', type=str, default='', help='Use the specified server for testing (skip checking for location and closest server).')
-    parser.add_argument('-ls', '--list-servers', dest='listservers', nargs='?', default=0, const=10, help='List the servers sorted by distance, nearest first. Optionally specify number of servers to show.')
-    parser.add_argument('-w', '--csv', dest='store', action='store_const', const=True, help='Print CSV formated output to STDOUT.')
-    parser.add_argument('-s', '--suppress', dest='suppress', action='store_const', const=True, help='Suppress debugging (STDERR) output.')
-    parser.add_argument('-mib', '--mebibit', dest='unit', action='store_const', const=True, help='Show results in mebibits.')
-    parser.add_argument('-n', '--server-count', dest='servercount', nargs='?', default=1, const=1, help='Specify how many different servers should be used in paralel. (Default: 1) (Increase it for >100Mbit testing.)')
+        parser.add_argument('server', nargs='?', type=str, default='', help='Use the specified server for testing (skip checking for location and closest server).')
+        parser.add_argument('-ls', '--list-servers', dest='listservers', nargs='?', default=0, const=10, help='List the servers sorted by distance, nearest first. Optionally specify number of servers to show.')
+        parser.add_argument('-w', '--csv', dest='store', action='store_const', const=True, help='Print CSV formated output to STDOUT.')
+        parser.add_argument('-s', '--suppress', dest='suppress', action='store_const', const=True, help='Suppress debugging (STDERR) output.')
+        parser.add_argument('-mib', '--mebibit', dest='unit', action='store_const', const=True, help='Show results in mebibits.')
+        parser.add_argument('-n', '--server-count', dest='servercount', nargs='?', default=1, const=1, help='Specify how many different servers should be used in paralel. (Default: 1) (Increase it for >100Mbit testing.)')
 
-    parser.add_argument('-p', '--proxy', dest='use_proxy', type=int, nargs='?', const=4, help='Specify 4 or 5 to use SOCKS4 or SOCKS5 proxy.')
-    parser.add_argument('-ph', '--proxy-host', dest='proxy_host', type=str, nargs='?', default='127.0.0.1', help='Specify socks proxy host. (Default: 127.0.0.1)')
-    parser.add_argument('-pp', '--proxy-port', dest='proxy_port', type=int, nargs='?', default=9050, help='Specify socks proxy port. (Default: 9050)')
+        parser.add_argument('-p', '--proxy', dest='use_proxy', type=int, nargs='?', const=4, help='Specify 4 or 5 to use SOCKS4 or SOCKS5 proxy.')
+        parser.add_argument('-ph', '--proxy-host', dest='proxy_host', type=str, nargs='?', default='127.0.0.1', help='Specify socks proxy host. (Default: 127.0.0.1)')
+        parser.add_argument('-pp', '--proxy-port', dest='proxy_port', type=int, nargs='?', default=9050, help='Specify socks proxy port. (Default: 9050)')
 
-    parser.add_argument('-cs', '--chunk-size', dest='chunksize', nargs='?', type=int, default=10240, help='Specify chunk size after wich tespeed calculates speed. Increase this number 4 or 5 times if you use weak hardware like RaspberryPi. (Default: 10240)')
-    parser.add_argument('-dt', '--max-download-tests', dest='downloadtests', nargs='?', type=int, default=15, help='Specify maximum number of download tests to be performed. (Default: 15)')
-    parser.add_argument('-ut', '--max-upload-tests', dest='uploadtests', nargs='?', type=int, default=10, help='Specify maximum number of upload tests to be performed. (Default: 10)')
+        parser.add_argument('-cs', '--chunk-size', dest='chunksize', nargs='?', type=int, default=10240, help='Specify chunk size after wich tespeed calculates speed. Increase this number 4 or 5 times if you use weak hardware like RaspberryPi. (Default: 10240)')
+        parser.add_argument('-dt', '--max-download-tests', dest='downloadtests', nargs='?', type=int, default=15, help='Specify maximum number of download tests to be performed. (Default: 15)')
+        parser.add_argument('-ut', '--max-upload-tests', dest='uploadtests', nargs='?', type=int, default=10, help='Specify maximum number of upload tests to be performed. (Default: 10)')
 
-    #parser.add_argument('-i', '--interface', dest='interface', nargs='?', help='If specified, measures speed from data for the whole network interface.')
+        #parser.add_argument('-i', '--interface', dest='interface', nargs='?', help='If specified, measures speed from data for the whole network interface.')
 
-    parser.add_argument('-v', '--version', dest='version', nargs='?', const=True, help='Show Tespeed version.')
+        parser.add_argument('-v', '--version', dest='version', nargs='?', const=True, help='Show Tespeed version.')
 
-    args = parser.parse_args()
-    main(args)
+        args = parser.parse_args()
+        main(args)
