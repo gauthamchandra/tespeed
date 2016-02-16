@@ -27,6 +27,10 @@ setup(
   #       the app
   install_requires = ['lxml', 'argparse'],
 
+  dependency_links = [
+    'git+https://github.com/Janhouse/SocksiPy#egg=SocksiPy'
+  ],
+
   entry_points = {
     'console_scripts': [
         'tespeed=tespeed.tespeed:init'
