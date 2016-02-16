@@ -7,7 +7,7 @@ setup(
 
   # Since this package is simple, just reference the .py file
   # directly instead of specifying a particular package
-  py_modules = ['tespeed'],
+  py_modules = ['tespeed.tespeed'],
 
   # TODO: Make this dynamically retrieved from a source file for easier maintenance
   version = '1.1.0',
@@ -29,7 +29,7 @@ setup(
 
   entry_points = {
     'console_scripts': [
-        'tespeed=tespeed:main'
+        'tespeed=tespeed.tespeed:init'
     ]
   },
 
