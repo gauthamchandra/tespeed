@@ -13,58 +13,59 @@ with open('./requirements.txt') as f:
         call(['pip', 'install'] + dep.split(' '))
 
 setup(
-  name = 'tespeed',
+    name = 'tespeed',
 
-  # Since this package is simple, just reference the .py file
-  # directly instead of specifying a particular package
-  py_modules = ['tespeed'],
+    # Since this package is simple, just reference the .py file
+    # directly instead of specifying a particular package
+    py_modules = ['tespeed'],
 
-  # TODO: Make this dynamically retrieved from a source file for easier maintenance
-  version = '1.1.0',
-  description = 'Terminal network speed test that uses servers from Speedtest.net. It uses nearest test server but can also use one manually specified by the user',
+    # TODO: Make this dynamically retrieved from a source file for easier maintenance
+    version = '1.1.0',
+    description = 'Terminal network speed test that uses servers from Speedtest.net. It uses nearest test server but can also use one manually specified by the user',
 
-  license = 'MIT',
+    license = 'MIT',
 
-  author = 'Janis Jansons',
-  author_email = 'janis.jansons@janhouse.lv',
-  url = 'https://github.com/gauthamchandra/tespeed',
+    author = 'Janis Jansons',
+    author_email = 'janis.jansons@janhouse.lv',
+    url = 'https://github.com/gauthamchandra/tespeed',
 
-  download_url = 'https://github.com/Janhouse/tespeed/tarball/1.1',
-  keywords = 'speedtest.net network speed',
+    download_url = 'https://github.com/Janhouse/tespeed/tarball/1.1',
+    keywords = 'speedtest.net network speed',
 
-  # dependencies
-  # TODO: Add upper and lower bound versions of compatibility so bleeding edge dependency doesn't break
-  #       the app
-  install_requires = ['lxml', 'argparse'],
+    # dependencies
+    # TODO: Add upper and lower bound versions of compatibility so bleeding edge dependency doesn't break
+    #       the app
+    install_requires = ['lxml', 'argparse'],
 
-  dependency_links = [
-    'git+https://github.com/Janhouse/SocksiPy#egg=SocksiPy'
-  ],
+    # More for easy_install than pip
+    dependency_links = [
+        'https://github.com/Janhouse/SocksiPy/tarball/master#egg=SocksiPy-digsby'
+    ],
 
-  entry_points = {
-    'console_scripts': [
-        'tespeed=tespeed.tespeed:init'
-    ]
-  },
+    entry_points = {
+        'console_scripts': [
+            'tespeed=tespeed:init'
+        ]
+    },
 
-  # Full list here: https://pypi.python.org/pypi?%3Aaction=list_classifiers
-  classifiers = [
-    # Lifecycle of this version
-    'Development Status :: 5 - Production/Stable',
+    # Full list here: https://pypi.python.org/pypi?%3Aaction=list_classifiers
+    classifiers = [
+        # Lifecycle of this version
+        'Development Status :: 5 - Production/Stable',
 
-    # The license the software is under
-    'License :: OSI Approved :: MIT License',
+        # The license the software is under
+        'License :: OSI Approved :: MIT License',
 
-    # What category and audience it may fall under
-    'Programming Language :: Python',
-    'Environment :: Console',
-    'Operating System :: OS Independent',
-    'Topic :: System :: Networking',
-    'Topic :: Utilities',
-    'Intended Audience :: System Administrators',
+        # What category and audience it may fall under
+        'Programming Language :: Python',
+        'Environment :: Console',
+        'Operating System :: OS Independent',
+        'Topic :: System :: Networking',
+        'Topic :: Utilities',
+        'Intended Audience :: System Administrators',
 
-    # Supported versions
-    'Programming Language :: Python :: 2.7',
-    'Programming Language :: Python :: 2 :: Only',
-  ],
+        # Supported versions
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 2 :: Only',
+    ],
 )
