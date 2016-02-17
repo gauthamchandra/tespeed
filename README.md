@@ -25,42 +25,59 @@ Tespeed (terminal speedtest) - Copyright 2012 Janis Jansons (janis.jansons@janho
     If you don't need testing through socks proxy, go check it out. :)
 
 
-Requirements:
+##Requirements:
 
-    This script requires recent Python (preferably 2.7 or newer) and Python2
-    modules lxml and argparse.
-    Install python-lxml and python-argparse (Debian) 
 
-    $ sudo apt-get install python-lxml python-argparse
+##Installation:
 
-    or python2-lxml (Archlinux).
+###Via Pip (**Coming Soon**)
 
-Installation:
+If you have pip installed, just do `pip install tespeed`
 
-    If you have Debian, you might have to change the python executable in tuper.py
-    or create a symlink for your existing python2.x executable by doing:
+###Manually via git
+
+###Requirements
+
+Since this is a manual installation, the script requires recent Python 
+(preferably 2.7 or newer) and Python2 modules `lxml` and `argparse`.
+Install python-lxml and python-argparse (Debian) 
+
+```
+$ sudo apt-get install python-lxml python-argparse
+```
+
+or python2-lxml (Archlinux).
+
+
+If you have Debian, you might have to change the python executable in tuper.py
+or create a symlink for your existing python2.x executable by doing:
+
+```
+sudo ln -s /usr/bin/python2.7 /usr/bin/python2
+```
     
-        sudo ln -s /usr/bin/python2.7 /usr/bin/python2
-        
-    If you have python2.6 then replace python2.7 with python2.6.
-    
-    
+If you have python2.6 then replace python2.7 with python2.6.
 
-    When doing the checkout, remember to pull submodules.
-    
-    If you have a decent git version (1.6.5 and up), get everything by doing:
+###Grabbing Source
 
-        git clone --recursive git://github.com/Janhouse/tespeed.git
+When doing the checkout, remember to pull submodules.
 
-    Otherwise do:
-    
-        git clone git://github.com/Janhouse/tespeed.git
-        cd tespeed
-        git submodule init
-        git submodule update
+If you have a decent git version (1.6.5 and up), get everything by doing:
 
+```
+git clone --recursive git://github.com/Janhouse/tespeed.git
+```
 
-Usage:
+Otherwise do:
+
+```
+git clone git://github.com/Janhouse/tespeed.git
+cd tespeed
+git submodule init
+git submodule update
+```
+
+##Usage:
 
     usage: tespeed.py [-h] [-ls [LISTSERVERS]] [-w] [-s] [-mib] [-n [SERVERCOUNT]]
                       [-p [USE_PROXY]] [-ph [PROXY_HOST]] [-pp [PROXY_PORT]]
@@ -96,7 +113,7 @@ Usage:
                                 weak hardware like RaspberryPi. (Default: 10240)
 
 
-What the script does:
+##What the script does:
 
  *  Loads config from speedtest.net (http://speedtest.net/speedtest-config.php).
 
@@ -116,14 +133,15 @@ What the script does:
  *  Can measure through SOCKS proxy.
 
 
-Logging to file
+###Logging to file
 
-	Execute manually or add to crontab:
-	
-		echo $(date +"%Y-%m-%d,%H:%M"),$(./tespeed.py -w) >> speedtest-log.txt
+Execute manually or add to crontab:
 
+```
+echo $(date +"%Y-%m-%d,%H:%M"),$(./tespeed.py -w) >> speedtest-log.txt
+```
 
-TODO (ideas):
+##TODO (ideas):
 
  *  Make it less messy.
  *  Send found results to speedtest.net API (needs some hash?) and get the link
@@ -135,4 +153,24 @@ TODO (ideas):
     actively sendong/receiving data at the same time. (Should provide more precise 
     test results.)
 
+##Contributing and Testing
 
+_**Warning:** Section incomplete_
+
+####Initial Steps:
+1. To develop, package and upload, you need: [twine](https://github.com/pypa/twine)
+2. You also need to have an account with PyPi setup
+3. Setup your `.pypirc` file. [See here on how](https://docs.python.org/2/distutils/packageindex.html#pypirc)
+
+####Testing
+To run and test locally, feel free to just install from local source via: `pip install -e <directory-of-tespeed-source>`
+
+####Uploading:
+* Create the `PKG-INFO` that is used to describe your package to pypi registry with `python setup.py egg_info`
+* Upload `tespeed.egg-info/PKG-INFO` via the [PyPi form on the website](https://pypi.python.org/pypi?%3Aaction=submit_form)
+* To package, run: `python setup.py sdist bdist_wheel` 
+* To upload, run: `twine upload dist/*` (please upload and test with `-r pypitest` first before uploading directly to pypi)
+
+If you want to test if everything worked (assuming you uploaded to _pypitest_ first):
+
+* Just run `pip install -i https://testpypi.python.org/pypi tespeed`
