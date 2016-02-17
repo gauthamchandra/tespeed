@@ -58,6 +58,17 @@ sudo ln -s /usr/bin/python2.7 /usr/bin/python2
     
 If you have python2.6 then replace python2.7 with python2.6.
 
+#####Grabbing the custom SocksiPy-digsby dependency
+
+Finally, _IF you are doing the manual step_, the app needs a custom version of the `SocksiPy-digsby` library
+that needs to be installed for tespeed to work and so the following should be run:
+
+```
+pip install -r requirements.txt
+```
+
+This will grab the custom dependency and install it in the path
+
 ###Grabbing Source
 
 When doing the checkout, remember to pull submodules.
