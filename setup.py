@@ -1,6 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from setuptools import setup
+from subprocess import call
+
+# A bit hacky but this needs to be done to install
+# any dependency in VCS and non PyPi location as part of
+# one `pip install` command
+with open('./requirements.txt') as f:
+    deps = f.read().splitlines()
+
+    for dep in deps:
+        call(['pip', 'install'] + dep.split(' '))
 
 setup(
   name = 'tespeed',

@@ -1,0 +1,1 @@
+-e git+https://github.com/Janhouse/SocksiPy#egg=SocksiPy-digsby

@@ -8,7 +8,7 @@ args=argparse.Namespace()
 args.suppress=None
 args.store=None
 
-from SocksiPy import socks
+import socks
 import socket
 
 # Magic!
